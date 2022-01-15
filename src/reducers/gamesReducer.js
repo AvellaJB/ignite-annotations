@@ -1,3 +1,5 @@
+import { upcomingGamesURL } from "../api";
+
 const initState = {
   popular: [],
   newGames: [],
@@ -8,7 +10,12 @@ const initState = {
 const gamesReducer = (state = initState, action) => {
   switch (action.type) {
     case "FETCH_GAMES":
-      return { ...state, popular: action.payload.popular };
+      return {
+        ...state,
+        popular: action.payload.popular,
+        upcoming: action.payload.upcoming,
+        newGames: action.payload.newgames,
+      };
     default:
       return { ...state };
   }

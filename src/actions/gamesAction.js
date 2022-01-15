@@ -1,5 +1,5 @@
 import axios from "axios";
-import { popularGamesURL } from "../api";
+import { popularGamesURL, upcomingGamesURL, newGamesURL } from "../api";
 
 //Action creator
 
@@ -7,12 +7,16 @@ import { popularGamesURL } from "../api";
 export const loadGames = () => async (dispatch) => {
   // FETCH AXIOS
   const popularData = await axios.get(popularGamesURL());
+  const upcomingData = await axios.get(upcomingGamesURL());
+  const newGamesData = await axios.get(newGamesURL());
   dispatch({
     type: "FETCH_GAMES",
     payload: {
       //Dans le payload on ajoute data.results pour avoir directement les résultats des jeux populaires
       //sans avoir le reste des données.
       popular: popularData.data.results,
+      upcoming: upcomingData.data.results,
+      newgames: newGamesData.data.results,
     },
   });
 };
