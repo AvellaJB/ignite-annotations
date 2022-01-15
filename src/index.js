@@ -3,9 +3,25 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+// REDUX SETUP
+import { createStore, applyMiddleware, compose } from "redux";
+//On installe MiddleWare et compose pour pouvoir passer dans le store plus d'un seul param
+import rootReducer from "./reducers";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+
+// Pour pouvoir passer plusieurs param on créée une fonction qui combine les deux
+//(utilisation de l'extention ReduxDevTools)
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+//Middleware permet d'apply thunk (qui gère les requêtes async, ce que ne fait pas redux) sur notre store
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
