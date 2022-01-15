@@ -1,5 +1,7 @@
-//Fuckin hell : Il faut installer le package dotenv si on veux pouvoir accéder aux variables d'env
-require("dotenv").config();
+//Jusque là j'avais besoin de dotenv pour faire fonctionner .env
+//mais visiblement j'en ai plus besoin maintenant wtf?
+//Après une erreur j'ai supprimé dotenv pour tester et ça fonctionne...
+//Mes data sont bien stored dans redux.
 
 // Base URL :
 const base_url = `https://api.rawg.io/api/`;
