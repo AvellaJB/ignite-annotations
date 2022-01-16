@@ -10,7 +10,7 @@ import Game from "../components/Game";
 import styled from "styled-components";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { useLocation } from "react-router-dom";
-
+import { fadeIn } from "../animations";
 //POur pouvoir faire des transitions entre des components ils faut que les composants
 //soient présents sur une même page et chaque composant doit avoir framer-motion dedans.
 //On ajoute en suite animatePresence a motion.
@@ -43,7 +43,7 @@ const Home = () => {
   );
 
   return (
-    <GameList>
+    <GameList variants={fadeIn} initial="hidden" animate="show">
       <AnimateSharedLayout type="crossfade">
         <AnimatePresence exitBeforeEnter>
           {/* Logique : Si il y a un pathId qui existe alors tu render GameDetail 
