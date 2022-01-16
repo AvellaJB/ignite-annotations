@@ -5,9 +5,19 @@ import { motion } from "framer-motion";
 // Redux
 import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Game = ({ name, released, image, id }) => {
+  //Scroll fix
+  // En effet avec la solution de Deved je me retrouve quand je go back avec le scroll bloqué.
+  const history = useHistory();
+
+  if (history.location.pathname === "/") {
+    document.body.style.overflow = "auto";
+  } else {
+    document.body.style.overflow = "hidden";
+  }
+
   //load Details
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
@@ -31,6 +41,7 @@ const StyledGame = styled(motion.div)`
   text-align: center;
   border-radius: 1rem;
   cursor: pointer;
+  overflow: hidden;
   img {
     width: 100%;
     height: 40vh;
