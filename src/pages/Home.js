@@ -9,8 +9,16 @@ import Game from "../components/Game";
 // Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
+  //Current Location
+  const location = useLocation();
+  const pathId = location.pathname.split("/")[2];
+  //Le split permet de découper dans console log les différentes partie du liens ou il y a un slash.
+  //dans notre game il va ressortir un array avec game, id game
+  //sur la home page on aura undefined.
+
   //FETCH GAMES
   const dispatch = useDispatch();
   useEffect(
@@ -26,7 +34,10 @@ const Home = () => {
 
   return (
     <GameList>
-      <GameDetail />
+      {/* Logique : Si il y a un pathId qui existe alors tu render GameDetail 
+      attention si on clique sur un jeu, on a une erreur car les détails n'ont pas eu le temps
+      de charger avant d'afficher game detail*/}
+      {pathId && <GameDetail />}
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (
