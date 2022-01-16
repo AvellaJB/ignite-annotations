@@ -39,6 +39,34 @@ const Home = () => {
           />
         ))}
       </Games>
+      <h2>Popular Games</h2>
+      <Games>
+        {popular.map((game) => (
+          <Game
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            //Attention les image envoyées par notre API sont super lourdes en 4K..
+            //normalement une api donne une option pour les tailles d'images
+            image={game.background_image}
+            key={game.id}
+          />
+        ))}
+      </Games>
+      <h2>New Games</h2>
+      <Games>
+        {newGames.map((game) => (
+          <Game
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            //Attention les image envoyées par notre API sont super lourdes en 4K..
+            //normalement une api donne une option pour les tailles d'images
+            image={game.background_image}
+            key={game.id}
+          />
+        ))}
+      </Games>
     </GameList>
   );
 };
