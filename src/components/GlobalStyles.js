@@ -11,8 +11,11 @@ html{
         width: 0.5rem;
     }
     &::-webkit-scrollbar-thumb{
-        background-color: darkgray;
+        background-color: darkgrey;
     }
+    &::-webkit-scrollbar-track {
+    background-color: white;
+  }
 }
 body {
     font-family: 'Monserrat', sans-serif;

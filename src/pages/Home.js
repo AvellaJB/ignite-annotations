@@ -1,5 +1,6 @@
 //On refactor toute cette logique qui était dans l'App à la base pour garder l'App clean
 import React, { useEffect } from "react";
+import GameDetail from "../components/GameDetail";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesAction";
@@ -25,6 +26,7 @@ const Home = () => {
 
   return (
     <GameList>
+      <GameDetail />
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (
