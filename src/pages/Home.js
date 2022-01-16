@@ -38,7 +38,9 @@ const Home = () => {
     []
   );
   // Get that data back, extraire du state.
-  const { popular, newGames, upcoming } = useSelector((state) => state.games);
+  const { popular, newGames, upcoming, searched } = useSelector(
+    (state) => state.games
+  );
 
   return (
     <GameList>
@@ -49,6 +51,28 @@ const Home = () => {
       de charger avant d'afficher game detail*/}
           {pathId && <GameDetail pathId={pathId} />}
         </AnimatePresence>
+        {searched.length ? (
+          // Attention malgré la conditons ça render toujours car c'est un flasy true
+          // En effet searched est un empty array qui est considéré comme true en javascript
+          <div className="searched">
+            <h2>Searched Games</h2>
+            <Games>
+              {searched.map((game) => (
+                <Game
+                  name={game.name}
+                  released={game.released}
+                  id={game.id}
+                  //Attention les image envoyées par notre API sont super lourdes en 4K..
+                  //normalement une api donne une option pour les tailles d'images
+                  image={game.background_image}
+                  key={game.id}
+                />
+              ))}
+            </Games>
+          </div>
+        ) : (
+          ""
+        )}
         <h2>Upcoming Games</h2>
         <Games>
           {upcoming.map((game) => (
