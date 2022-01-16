@@ -1,4 +1,8 @@
-const initialState = { game: { platforms: [] }, screen: { results: [] } };
+const initialState = {
+  game: { platforms: [] },
+  screen: { results: [] },
+  isLoading: true,
+};
 
 // On rajoute la platform et résultst pour que le .map ne bug pas en se disant qu'il y a pas de
 // data parce que ça prend du temps à arriver.
@@ -12,6 +16,12 @@ const detailReducer = (state = initialState, action) => {
         ...state,
         game: action.payload.game,
         screen: action.payload.screen,
+        isLoading: false,
+      };
+    case "LOADING_DETAIL":
+      return {
+        ...state,
+        isLoading: true,
       };
     default:
       return { ...state };
